@@ -1,0 +1,84 @@
+---
+swagger: "2.0"
+info:
+  description: "Minhas contas"
+  version: "1.0.0"
+  title: "Contas 1.0"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "brenel.marinho@gmial.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "www.spartban.com"
+basePath: "/contas"
+tags:
+- name: "Contas"
+  description: "Todas as contas em um lugar"
+  externalDocs:
+    description: "Mais detalhes em "
+    url: "http://spartban.com/blog"
+schemes:
+- "https"
+- "http"
+paths:
+  /addConta:
+    get:
+      description: "Adiciona uma nova conta na plataforma."
+      operationId: "addConta"
+      parameters:
+      - name: "nome"
+        in: "query"
+        description: "Descrição da conta."
+        required: true
+        type: "string"
+      - name: "data"
+        in: "query"
+        description: "Data da conta"
+        required: true
+        type: "string"
+      - name: "valor"
+        in: "query"
+        description: "Valor da conta"
+        required: true
+        type: "number"
+      responses:
+        200:
+          description: "Se Criado com sucesso retorna ok."
+          schema:
+            $ref: "#/definitions/Conta"
+        500:
+          description: "Se erro retorna a msg de erro."
+          schema:
+            $ref: "#/definitions/Erro"
+      x-swagger-router-controller: "Default"
+definitions:
+  Conta:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "id da conta criada."
+      descricao:
+        type: "string"
+        description: "Descricao."
+      valor:
+        type: "string"
+        description: "Valor."
+      data:
+        type: "string"
+        description: "Valor."
+    example:
+      data: "data"
+      valor: "valor"
+      id: "id"
+      descricao: "descricao"
+  Erro:
+    type: "object"
+    properties:
+      descricao:
+        type: "string"
+        description: "Descricao."
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
